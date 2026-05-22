@@ -17,3 +17,7 @@ local.properties
 # Keystore
 *.jks
 *.keystore
+
+# Credentials
+.env
+*.env

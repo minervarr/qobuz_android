@@ -3,12 +3,6 @@ project(qobuz_test)
 
 set(NATIVE_APP_GLUE ${ANDROID_NDK}/sources/android/native_app_glue)
 
-# Prebuilt Rust qobuz-api library (cross-compiled with cargo-ndk)
-add_library(qobuz_api SHARED IMPORTED)
-set_target_properties(qobuz_api PROPERTIES
-    IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/jniLibs/${ANDROID_ABI}/libqobuz_api.so
-)
-
 add_library(qobuz_test SHARED
     cpp/main.cc
     ${NATIVE_APP_GLUE}/android_native_app_glue.c
@@ -19,8 +13,15 @@ target_include_directories(qobuz_test PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/cpp
 )
 
+# Search jniLibs for libqobuz_ffi.so by name — linker stores only the filename
+# in DT_NEEDED (not the full path), so Android can find it in the APK at runtime.
+# Build: cd qobuz_ffi && cargo ndk -t arm64-v8a -t x86_64 -o ../app/src/main/jniLibs build --release
+target_link_directories(qobuz_test PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/jniLibs/${ANDROID_ABI}
+)
+
 target_link_libraries(qobuz_test
     android
     log
-    qobuz_api
+    qobuz_ffi
 )

@@ -1,0 +1,19 @@
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Android NDK / CMake
+app/.cxx/
+
+# Rust
+qobuz_ffi/target/
+
+# Android Studio
+*.iml
+.idea/
+local.properties
+
+# Keystore
+*.jks
+*.keystore

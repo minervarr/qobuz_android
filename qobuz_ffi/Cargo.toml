@@ -1,0 +1,12 @@
+[package]
+name = "qobuz_ffi"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+qobuz-api = { path = "../qobuz-api" }
+rustls-platform-verifier = "0.7"
+jni = { version = "0.22", default-features = false }

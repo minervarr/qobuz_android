@@ -9,6 +9,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = file("C:/Users/incxiuefb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rustls-platform-verifier-android-0.1.1/maven")
+        }
     }
 }
 rootProject.name = 'qobuz_test'

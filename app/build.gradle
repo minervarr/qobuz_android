@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
 }
 
+
 android {
     namespace "io.nava.qobuz_test"
 
@@ -40,4 +41,8 @@ android {
             universalApk false
         }
     }
+}
+
+dependencies {
+    implementation "rustls:rustls-platform-verifier:0.1.1"
 }

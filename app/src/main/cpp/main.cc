@@ -6,6 +6,7 @@
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
 extern "C" {
+    void qobuz_init_android(void* env, void* context);
     char* qobuz_search_grimes(
         const char* app_id,
         const char* app_secret,
@@ -17,6 +18,7 @@ extern "C" {
 
 void android_main(android_app* app) {
     LOGI("qobuz_test started — searching Grimes albums...");
+    qobuz_init_android(app->activity->vm, app->activity->clazz);
 
     char* result = qobuz_search_grimes(
         "798273057",
